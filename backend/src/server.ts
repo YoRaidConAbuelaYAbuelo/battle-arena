@@ -1,8 +1,9 @@
 // src/server.ts
 import express from 'express';
-import cors from 'cors'
+import cors from 'cors';
 import dotenv from 'dotenv';
-import pool from './database/db.js';
+import pool from './database/db.ts';
+import authRoutes from './routes/authRoutes.js'; // 1. IMPORT ROUTES
 
 dotenv.config();
 
@@ -11,29 +12,17 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // Parses incoming JSON requests
+app.use(express.json());
+
+// 2. USE ROUTES (This prefixes everything in authRoutes with /auth)
+app.use('/auth', authRoutes);
 
 // Basic route to test server
 app.get('/', (req, res) => {
   res.send('Battle Arena API is running!');
 });
 
-// Route to test Database connection
-app.get('/test-db', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT NOW()');
-    res.json({ 
-      success: true, 
-      message: 'Database connected!', 
-      time: result.rows[0].now 
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, error: 'Database connection failed' });
-  }
-});
-
-// Start Server
+// ... rest of your test-db route and listen code
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
 });
