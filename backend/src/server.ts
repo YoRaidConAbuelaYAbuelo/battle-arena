@@ -15,8 +15,8 @@ app.use(cors());
 app.use(express.json());
 
 // 2. USE ROUTES (This prefixes everything in authRoutes with /auth)
-app.use('/auth', authRoutes);
-app.use('/game', gameRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/game', gameRoutes);
 // Basic route to test server
 app.get('/', (req, res) => {
   res.send('Battle Arena API is running!');
