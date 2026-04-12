@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://battle-arena-lue9.onrender.com/api';
 
 export const api = {
   register: (body: object) => fetch(`${BASE_URL}/auth/register`, {

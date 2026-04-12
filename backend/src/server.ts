@@ -8,7 +8,7 @@ import gameRoutes from './routes/gameRoutes.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = Number(process.env.PORT || 5000);
 
 // Middleware
 app.use(cors());
@@ -23,6 +23,6 @@ app.get('/', (req, res) => {
 });
 
 // ... rest of your test-db route and listen code
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
 });
