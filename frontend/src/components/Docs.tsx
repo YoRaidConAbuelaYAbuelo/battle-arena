@@ -11,7 +11,7 @@ const Docs: React.FC = () => {
         <li><code>POST /game/:id/action</code> - Body: "attack" or "rev_up"</li>
       </ul>
       <h3>Game Rules</h3>
-      <p>Base Accuracy: 20%. Rev Up: +20% Accuracy. Goal: 0 HP opponent.</p>
+      <p>Base Accuracy: 20%. Rev Up: +10% Accuracy. Goal: 0 HP opponent.</p>
     </div>
   );
 };
