@@ -13,6 +13,9 @@ const PORT = Number(process.env.PORT || 5000);
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.post('/api/debug', (req, res) => {
+  res.json({ status: "Backend widzi zapytania POST!" });
+});
 
 // 2. USE ROUTES (This prefixes everything in authRoutes with /auth)
 app.use('/api/auth', authRoutes);
