@@ -21,10 +21,10 @@ const Dashboard: React.FC<DashboardProps> = ({ userId, username }) => {
         setGameId(result.gameId);
         setView('arena');
       } else {
-        alert("Nie udało się znaleźć gry.");
+        alert("Couldn't find game");
       }
     } catch (err) {
-      alert("Błąd połączenia z serwerem.");
+      alert("Error connecting to server.");
     } finally {
       setLoading(false);
     }
@@ -49,15 +49,15 @@ const Dashboard: React.FC<DashboardProps> = ({ userId, username }) => {
     <div>
       {view === 'menu' ? (
         <div>
-          <h2>Witaj, {username}!</h2>
-          <p>Twoje ID: {userId}</p>
+          <h2>Hi, {username}!</h2>
+          <p>Your ID: {userId}</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '15px', alignItems: 'center' }}>
             <button 
               onClick={startMatchmaking} 
               disabled={loading}
               style={{ padding: '15px 30px', fontSize: '1.2rem', cursor: 'pointer', background: '#28a745', color: 'white', border: 'none', borderRadius: '5px', width: '250px' }}
             >
-              {loading ? 'SZUKANIE...' : 'SZUKAJ PRZECIWNIKA'}
+              {loading ? 'Searching...' : 'FIND OPPONENT'}
             </button>
 
             <button 
@@ -71,11 +71,11 @@ const Dashboard: React.FC<DashboardProps> = ({ userId, username }) => {
       ) : (
         // --- WIDOK RANKINGU ---
         <div>
-          <h2>TABELA NAJLEPSZYCH</h2>
+          <h2>LEADERBOARD</h2>
           <table style={{ margin: '20px auto', borderCollapse: 'collapse', width: '300px' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid #333' }}>
-                <th>Gracz</th>
+                <th>PLAYER</th>
                 <th>ELO</th>
               </tr>
             </thead>
@@ -88,7 +88,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userId, username }) => {
               ))}
             </tbody>
           </table>
-          <button onClick={() => setView('menu')} style={{ padding: '10px 20px', cursor: 'pointer' }}>POWRÓT DO MENU</button>
+          <button onClick={() => setView('menu')} style={{ padding: '10px 20px', cursor: 'pointer' }}>MENU</button>
         </div>
       )}
     </div>

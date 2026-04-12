@@ -50,16 +50,16 @@ const App: React.FC = () => {
         // --- SEKCJA LOGOWANIA (Pozostaje w App) ---
         <div>
           <h1>BATTLE ARENA</h1>
-          <h2>{isRegister ? 'Zarejestruj się' : 'Zaloguj się'}</h2>
+          <h2>{isRegister ? 'Sign up' : 'Sign in'}</h2>
           <form onSubmit={handleAuth}>
             <input type="text" placeholder="Username" onChange={e => setFormData({...formData, username: e.target.value})} /><br/>
             <input type="password" placeholder="Password" onChange={e => setFormData({...formData, password: e.target.value})} /><br/>
             <button type="submit" style={{ margin: '10px', padding: '10px 20px' }}>
-              {isRegister ? 'Załóż konto' : 'Wejdź do gry'}
+              {isRegister ? 'Sign up' : 'Play'}
             </button>
           </form>
           <button onClick={() => setIsRegister(!isRegister)} style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}>
-            {isRegister ? 'Masz już konto? Zaloguj się' : 'Nie masz konta? Zarejestruj się'}
+            {isRegister ? 'Already got an account? Log in' : 'You dont have an account? Sign in here'}
           </button>
         </div>
       ) : (
@@ -68,7 +68,7 @@ const App: React.FC = () => {
       )}
 
       <hr style={{ margin: '40px 0' }} />
-      <button onClick={() => setShowDocs(!showDocs)}>{showDocs ? 'Ukryj' : 'Pokaż'} Dokumentację</button>
+      <button onClick={() => setShowDocs(!showDocs)}>{showDocs ? 'Hide' : 'Show'} Documantation</button>
       {showDocs && <Docs />}
       
       {user && (

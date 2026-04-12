@@ -18,11 +18,11 @@ const Arena: React.FC<ArenaProps> = ({ userId, gameId, onBack }) => {
       setGameState(data.state);
       setGameInfo(data.game);
       if (data.game.status === 'finished') {
-        setMessage(data.game.winner_id === userId ? "🏆 WYGRANA!" : "💀 PRZEGRANA...");
+        setMessage(data.game.winner_id === userId ? "🏆 YOU WON!!!" : "💀 YOU LOSE...");
       } else if (message !== "REMIS") {
         const isP1 = data.game.player1_id === userId;
         const myAct = isP1 ? data.state.player1_action : data.state.player2_action;
-        setMessage(myAct ? "Czekaj na ruch przeciwnika..." : "Twoja tura!");
+        setMessage(myAct ? "Wait for enemy action..." : "Your Turn!");
       }
     } catch (err) { console.error(err); }
   };
