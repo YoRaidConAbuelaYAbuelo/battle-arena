@@ -2,9 +2,9 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import pool from './database/db.ts';
+import pool from './database/db.js';
 import authRoutes from './routes/authRoutes.js'; // 1. IMPORT ROUTES
-
+import gameRoutes from './routes/gameRoutes.js';
 dotenv.config();
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(express.json());
 
 // 2. USE ROUTES (This prefixes everything in authRoutes with /auth)
 app.use('/auth', authRoutes);
-
+app.use('/game', gameRoutes);
 // Basic route to test server
 app.get('/', (req, res) => {
   res.send('Battle Arena API is running!');

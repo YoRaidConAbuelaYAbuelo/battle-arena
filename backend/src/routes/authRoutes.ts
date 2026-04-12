@@ -2,7 +2,7 @@
 import { Router, Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import pool from '../database/db.ts';
+import pool from '../database/db.js';
 
 const router = Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'super_secret_battle_key';
@@ -28,9 +28,9 @@ router.post('/register', async (req: Request, res: Response) => {
     );
 
     res.status(201).json({ message: 'User registered successfully!' });
-  } catch (err) {
+  } catch (err: any) {
     console.error(err);
-    res.status(500).json({ error: 'Registration failed' });
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -50,7 +50,7 @@ router.post('/login', async (req: Request, res: Response) => {
     // Generate Token
     const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '1h' });
 
-    res.json({ message: 'Login successful', token });
+    res.json({ message: 'Login successful', token, userId: user.id });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Login failed' });
