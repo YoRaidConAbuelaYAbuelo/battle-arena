@@ -12,13 +12,36 @@ const App: React.FC = () => {
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
-    const result = isRegister ? await api.register(formData) : await api.login(formData);
     
-    if (result.token && result.userId) {
-      localStorage.setItem('token', result.token);
-      setUserId(result.userId);
-      setUser(formData.username);
-    } 
+    try {
+      const result = isRegister ? await api.register(formData) : await api.login(formData);
+
+      // 1. Sprawdzamy czy API zwróciło jawny błąd (np. status 400 lub 500)
+      if (result.error) {
+        alert(`Błąd: ${result.error}`);
+        return;
+      }
+
+      // 2. Logika po REJESTRACJI
+      if (isRegister) {
+        alert("Konto założone! Teraz możesz się zalogować.");
+        setIsRegister(false); // Automatycznie przełączamy formularz na logowanie
+        return;
+      }
+
+      // 3. Logika po LOGOWANIU (tutaj musi być token i userId)
+      if (result.token && result.userId) {
+        localStorage.setItem('token', result.token);
+        setUserId(result.userId);
+        setUser(formData.username);
+      } else {
+        alert("Nie otrzymano danych logowania z serwera.");
+      }
+
+    } catch (err) {
+      console.error("Critical Auth Error:", err);
+      alert("Wystąpił nieoczekiwany błąd połączenia.");
+    }
   };
 
   return (
