@@ -127,7 +127,7 @@ async function resolveTurn(gameId: number, s: any, gameInfo: any, res: Response)
   // Sprawdzenie końca rundy / meczu
   if (finalP1 === 0 || finalP2 === 0) {
     if (finalP1 === 0 && finalP2 === 0) {
-      await pool.query("UPDATE game_state SET player1_hp=100, player2_hp=100, player1_action=NULL, player2_action=NULL WHERE game_id=$1", [gameId]);
+      await pool.query("UPDATE game_state SET player1_hp=100, player2_hp=100, player1_accuracy=0.2, player2_accuracy=0.2, player1_action=NULL, player2_action=NULL WHERE game_id=$1", [gameId]);
       return res.json({ message: "REMIS", p1_hp: 0, p2_hp: 0 });
     }
 
