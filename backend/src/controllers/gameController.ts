@@ -5,7 +5,7 @@ import pool from '../database/db.js';
 export const getLeaderboard = async (req: Request, res: Response) => {
   try {
     const result = await pool.query(
-      "SELECT username, elo FROM users ORDER BY elo DESC LIMIT 10"
+      "SELECT username, elo FROM users ORDER BY elo DESC LIMIT 30"
     );
     res.json(result.rows);
   } catch (err) {
