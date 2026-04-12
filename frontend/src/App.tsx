@@ -18,9 +18,7 @@ const App: React.FC = () => {
       localStorage.setItem('token', result.token);
       setUserId(result.userId);
       setUser(formData.username);
-    } else {
-      alert(result.error || "Błąd autentykacji");
-    }
+    } 
   };
 
   return (
