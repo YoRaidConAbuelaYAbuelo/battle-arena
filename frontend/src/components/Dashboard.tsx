@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Arena from './Arena';
 import { api } from '../api';
-
+import '../App.css';
 interface DashboardProps {
   userId: number;
   username: string;
@@ -88,7 +88,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userId, username }) => {
               ))}
             </tbody>
           </table>
-          <button onClick={() => setView('menu')} style={{ padding: '10px 20px', cursor: 'pointer' }}>MENU</button>
+          <button className="logout-btn" onClick={() => setView('menu')} style={{ padding: '10px 20px', cursor: 'pointer' }}>MENU</button>
         </div>
       )}
     </div>
